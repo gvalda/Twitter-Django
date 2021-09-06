@@ -1,0 +1,61 @@
+@media only screen and (max-width: 1800px) {
+  #header{
+    width: calc(100vw * 2 / 3 - var(--max-width) - 16px);
+  }
+
+  #main{
+    margin-right: calc(100vw / 3);
+  }
+
+  #aside {
+    width: calc(100vw / 3);
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  #header .container{
+    width: 4rem;
+    align-items: center;
+  }
+
+  .btn-wide {
+    width: auto;
+  }
+
+  #header .block-container .block .labels,
+  #header .block-container .button {
+    display: none;
+  }
+
+  #header .profile .block-container{
+    border-radius: 50%;
+    width: min-content;
+  }
+
+  #header .profile .block-container .block img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  #aside .container{
+    max-width: calc(var(--max-width) / 2);
+  }
+}
+
+@media only screen and (max-width: 1030px) {
+
+  #header{
+    width: max(calc(50vw - var(--max-width)/2 - 8.5px), 4rem);
+  }
+
+  #main{
+    margin-left: max(calc(50vw - var(--max-width)/2 - 8.5px), 4rem);
+    margin-right: auto;
+  }
+
+  #aside {
+    display: none;
+  }
+}

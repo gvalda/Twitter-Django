@@ -1,0 +1,43 @@
+{% load static %}
+{% if side_follows %}
+    <div class="follow outline">
+      <header class="header">
+        <h2>Who to follow</h2>
+      </header>
+      <ul>
+        {% for follow in side_follows %}
+          <li>
+            <div class="block-container">
+              <div class="block">
+                <a href="#">
+                  <img src="{{ follow.profile.get_image }}" alt="" />
+                </a>
+                <div class="labels undreline-hlabel">
+                  <a href="#">
+                    <h3>
+                      {{ follow.first_name }} {{ follow.last_name }}
+                    </h3>
+                    <p>@{{ follow.username }}</p>
+                  </a>
+                </div>
+              </div>
+              <div class="button">
+                <a href="#" class="btn btn-light">Follow</a>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+        <li>
+          <div class="block-container">
+            <div class="block">
+              <div class="labels undreline-hlabel">
+                <a href="#">
+                  <p>Show more</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  {% endif %}

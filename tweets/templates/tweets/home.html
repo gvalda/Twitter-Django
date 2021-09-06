@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Home | Twitter
+{% endblock title %}
+
+{% block content %}
+  <header class="header sticky">
+    <a href="#">
+      <h3>
+        Home
+      </h3>
+    </a>
+    <a href="#" class="btn-small">
+      <i class="far fa-star"></i>
+    </a>
+  </header>
+
+  <div class="card-container">
+    <div class="card">
+      <div class="image-container">
+        <img src="{{ user.profile.get_image }}" alt="" />
+      </div>
+      <div class="content-container">
+        <div class="content">
+          <span class="textarea" role="textbox" contenteditable></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% for tweet in tweets %}
+    <div class="card-container">
+      <div class="card">
+        <div class="image-container">
+          <img src="{{ tweet.author.profile.get_image }}" alt="" />
+        </div>
+        <div class="content-container">
+          <header class="card-header">
+            <div class="labels undreline-hlabel">
+              <h3>{{ tweet.author.first_name}} {{ tweet.author.last_name }}</h3>
+              <span>@{{ tweet.author.username }}</span>
+            </div>
+            <div class="dot">
+              <span>·</span>
+            </div>
+            <div class="date">
+              <span class="underline">{{ tweet.get_posted }}</span>
+            </div>
+            <a href="#" class="btn-small btn-primary-light"><i class="fas fa-info-circle"></i></a>
+          </header>
+          <div class="content">
+            {{ tweet.description }}
+          </div>
+        </div>
+      </div>
+      <footer class="footer-container">
+        <ul>
+          <li class="btn-react-blue">
+            <a href="#">
+              <i class="far fa-comment"></i>
+              <span>
+                {{ tweet.comments }}
+              </span>
+            </a>
+          </li>
+          <li class="btn-react-green">
+            <a href="#">
+              <i class="fas fa-share"></i>
+              <span>
+                {{ tweet.retweets }}
+              </span>
+            </a>
+          </li>
+          <li class="btn-react-red">
+            <a href="#">
+              <i class="far fa-heart"></i>
+              <span>
+                {{ tweet.likes }}
+              </span>
+            </a>
+          </li>
+          <li class="btn-react-blue">
+            <a href="#">
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+          </li>
+          <li class="btn-react-blue">
+            <a href="#">
+              <i class="far fa-chart-bar"></i>
+            </a>
+          </li>
+        </ul>
+      </footer>
+    </div>
+  {% endfor %}
+  {% if follow_tweets %}
+    <div class="follow">
+      <header class="header">
+        <h3>Who to follow</h3>
+        <a href="#" class="btn-small"><i class="fas fa-cog"></i></a>
+      </header>
+      {% for follow_tweet in follow_tweets %}
+        <div class="card-container hover-outline">
+          <div class="card">
+            <div class="image-container">
+              <img src="{{ follow_tweet.author.profile.get_image }}" alt="" />
+            </div>
+            <div class="content-container">
+              <header class="card-header">
+                <div class="labels undreline-hlabel">
+                  <h3>
+                    {{ follow_tweet.author.first_name }} {{ follow_tweet.author.last_name }}
+                  </h3>
+                  <br />
+                  <span>@{{ follow_tweet.author.username }}</span>
+                </div>
+                <div class="button">
+                  <a href="#" class="btn btn-light">Follow</a>
+                </div>
+              </header>
+              <div class="content">
+                {{ follow_tweet.description}}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <footer class="footer hover-outline">
+        <a href="#">
+          <p>Show more</p>
+        </a>
+      </footer>
+    </div>
+  {% endif %}
+{% endblock content %}

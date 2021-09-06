@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Explore | Twitter
+{% endblock title %}
+
+{% block content %}
+  <header class="header sticky">
+    <a href="#">
+      {% include "search.html" %}
+    </a>
+    <a href="#" class="btn-small">
+      <i class="fas fa-cog"></i>
+    </a>
+  </header>
+
+  {% if news %}
+    {% with news|first as first_news %}
+      <div class="big-news">
+        <div class="card-container">
+          <div class="big-image">
+            <img src="{{ first_news.get_image }}" alt="">
+          </div>
+          <div class="card">
+            <div class="content-container">
+              <header class="card-header">
+                <div class="labels">
+                  <span>{{ first_news.category }}</span>
+                </div>
+                <div class="dot">
+                  <span>·</span>
+                </div>
+                <div class="date">
+                  <span class="underline">{{ first_news.get_posted }}</span>
+                </div>
+
+              </header>
+              <div class="content">
+                {{ first_news.header }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endwith %}
+  {% endif %}
+
+  {% if trending_tags %}
+    <div class="trend block">
+      <header class="header">
+        <h3>Trends for you</h3>
+      </header>
+      <ul>
+        {% for country, trending_tag in trending_tags %}
+          <li>
+            <div class="block-container">
+              <div class="block">
+                <div class="labels">
+                  <a href="#">
+                    <p>Trending in {{ country }}</p>
+                    <h3>#{{ trending_tag.tag }}</h3>
+                    <p>{{ trending_tag.tweet_set.count }} Tweet{{ trending_tag.tweet_set.count|pluralize:'s' }}</p>
+                  </a>
+                </div>
+              </div>
+              <div class="button">
+                <a href="#" class="btn-small btn-primary-light"><i class="fas fa-info-circle"></i></a>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+      <footer class="footer hover-outline">
+        <a href="#">
+          <p>Show more</p>
+        </a>
+      </footer>
+    </div>
+  {% endif %}
+  <!-- <div class="labels">
+    <span>{{ first_news.category }}</span>
+  </div>
+  <div class="dot">
+    <span>·</span>
+  </div>
+  <div class="date">
+    <span class="underline">{{ first_news.get_posted }}</span>
+  </div> -->
+
+  {% if news|length > 1 %}
+  <div class="news block">
+    <header class="header">
+      <h3>What's happening</h3>
+    </header>
+    <ul>
+      {% for one_news in news|slice:"1:" %}
+        <li>
+          <a href="#">
+            <div class="block-container">
+                <div class="block">
+                  <img src="{{ one_news.get_image }}" alt="" />
+                  <div class="labels">
+                      <p>{{ one_news.category }} · {{ one_news.get_posted }}</p>
+                      <h3>{{ one_news.header }}</h3>
+                  </div>
+                </div>
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    <footer class="footer hover-outline">
+      <a href="#">
+        <p>Show more</p>
+      </a>
+    </footer>
+  </div>
+  {% endif %}
+
+{% endblock content %}

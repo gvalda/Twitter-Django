@@ -1,0 +1,128 @@
+{% load static %}
+<nav id="navbar">
+  <ul>
+    <li>
+      <a href="{% url 'home' %}">
+        <div class="block-container round logo">
+          <div class="block">
+            <i class="fab fa-twitter"></i>
+          </div>
+        </div>
+      </a>
+    </li>
+    {% if user.is_authenticated %}
+      <li>
+        <a href="{% url 'home' %}">
+          <div class="block-container round {% if nbar == 'home' %} current {% endif %} ">
+            <div class="block">
+              <i class="fas fa-home"></i>
+              <div class="labels">
+                <h3>Home</h3>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+    {% endif %}
+    <li>
+      <a href="{% url 'explore' %}">
+        <div class="block-container round {% if nbar == 'explore' %} current {% endif %}">
+          <div class="block">
+            <i class="fas fa-hashtag"></i>
+            <div class="labels">
+              <h3>Explore</h3>
+            </div>
+          </div>
+        </div>
+      </a>
+    </li>
+    {% if user.is_authenticated %}
+      <li>
+        <a href="#">
+          <div class="block-container round">
+            <div class="block">
+              <i class="fas fa-bell"></i>
+              <div class="labels">
+                <h3>Notifications</h3>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <div class="block-container round">
+            <div class="block">
+              <i class="far fa-envelope"></i>
+              <div class="labels">
+                <h3>Messages</h3>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <div class="block-container round">
+            <div class="block">
+              <i class="far fa-bookmark"></i>
+              <div class="labels">
+                <h3>Bookmarks</h3>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <div class="block-container round">
+            <div class="block">
+              <i class="far fa-list-alt"></i>
+              <div class="labels">
+                <h3>Lists</h3>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <div class="block-container round">
+            <div class="block">
+              <i class="far fa-user"></i>
+              <div class="labels">
+                <h3>Profile</h3>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+    {% endif %}
+    <li>
+      <a href="#">
+        <div class="block-container round">
+          <div class="block">
+            <i class="fas fa-info-circle"></i>
+            <div class="labels">
+              <h3>More</h3>
+            </div>
+          </div>
+        </div>
+      </a>
+    </li>
+    {% if user.is_authenticated %}
+      <li>
+        <a href="#">
+          <div class="block-container round btn-primary btn-wide">
+            <div class="block">
+              <i class="fas fa-feather"></i>
+              <div class="labels">
+                <h3>Tweet</h3>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>

@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" block="IE=edge" />
+    <meta name="viewport" block="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/2e7e3003f3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/mobile.css' %}" />
+    <title>
+      {% block title %}
+        Twitter
+      {% endblock title %}
+    </title>
+  </head>
+  <body>
+    <header id="header">
+      <div class="container">
+        {% include "navbar.html" %}
+        {% if user.is_authenticated %}
+          <div class="profile">
+            <a href="#">
+              <div class="block-container round">
+                <div class="block">
+                  <img src="{{ user.profile.get_image }}" alt="" />
+                  <div class="labels">
+                    <h3>{{ user.first_name}} {{ user.last_name }}</h3>
+                    <p>@{{ user.username }}</p>
+                  </div>
+                </div>
+                <div class="button">
+                  <div class="btn-small">
+                    <i class="fas fa-info-circle"></i>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endif %}
+       
+      </div>
+    </header>
+    <main id="main">
+      {% block content %}
+        
+      {% endblock content %}
+    </main>
+    <aside id="aside">
+      <div class="container">
+        {% if side_search %}
+          {% include "search.html" %}
+        {% endif %}
+        {% include "trends.html" %}
+        {% include "follow_suggestions.html" %}
+        {% include "footer.html" %}
+      </div>
+    </aside>
+  </body>
+</html>
